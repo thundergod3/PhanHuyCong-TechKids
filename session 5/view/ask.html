@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <nav>
+        <a href="/ask">Hỏi nhanh</a>
+        <a href="/answer">Đáp án</a>
+    </nav>
+    <h1>Hãy hỏi cộng đồng một câu hỏi đúng/sai hoặc có/không</h1>
+    <form name="frm" method="POST" action="http://localhost:2002/addquestion">
+        <textarea id='questionInput' name="question" cols="30" rows="10" maxlength="200"></textarea>
+        <span id='remainChar'>Còn 200/200 ký tự</span>
+        <button>Gửi</button>
+    </form>
+
+    <script>
+        const questionInputElem = document.getElementById('questionInput');
+        questionInputElem.addEventListener("change", function () {
+            const remainChar = 200 - questionInputElem.value.length;
+            document.getElementById("remainChar").innerText = "Còn" + remainChar + "/200 ký tự";
+        })
+
+        // /*=============  This is a count of total number to be displayed ==================*/
+        // var setTotalNumberOfWordCounter = "200";
+        // /*=============  This is a count of total number to be displayed ==================*/
+
+        // /*This function first get the value of textarea. And read length of that textarea charactor. then compare the value of set value.*/
+
+        // function displayWordCounter() {
+        //     const getTextValue = document.frm.question.value;  // Get input textarea value
+        //     let getTextLength = getTextValue.length;   // Get length of input textarea value
+            
+        //     if (getTextLength > setTotalNumberOfWordCounter) {     //compare this length with total count
+        //         console.log("hallo");
+        //         getTextValue = getTextValue.substring(0, setTotalNumberOfWordCounter);
+        //         document.frm.question.value = getTextValue;
+        //         return false;
+        //     }
+
+        //     document.getElementById("remainChar").innerText = "Còn" + (setTotalNumberOfWordCounter-getTextLength) + "/200 ký tự";
+        // };
+
+    </script>
+
+</body>
+
+</html>

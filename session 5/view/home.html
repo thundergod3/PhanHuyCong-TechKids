@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quyết đê</title>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <a href="/ask">Hỏi nhanh</a>
+    <a href="/answer">Đáp án</a>
+    <h1 id='question'></h1>
+    <a id='yes' href="">
+        <button>Đúng/Có/Phải</button>
+    </a>
+    
+    <a id='no' href="">
+        <button>Sai/Không/Trái</button>
+    </a>
+    <button id='resultVote'>Kết quả vote</button>
+    <button id='anotherQuestion'>Câu hỏi khác</button>
+
+    <script>
+        let question
+        // $("#yes, #no").on("click", function (event) {
+        //     console.log(event.target.id);
+        //     if (event.target.id === "yes") {
+        //         question.yes = Number(question.yes) + 1;
+        //     } else {
+        //         question.no = Number(question.no) + 1;
+        //     }
+        //     $.ajax({
+        //         url: '/editquestion',
+        //         type: 'PUT',
+        //         data: question,
+        //         // success: function (data_put) {
+        //         //     console.log(data_put);
+        //         // }
+        //     })
+        // })
+
+        $.ajax({
+            url: 'http://localhost:2002/randomquestion',
+            success: function (questionData) {
+                $('#question').html(questionData.content);
+                $('#yes').attr("href", `/vote/${questionData._id}/yes`);
+                $('#no').attr("href", `/vote/${questionData._id}/no`);
+                question = questionData;
+            }
+        })
+
+        // const linkVoteByYes = document.getElementById('yes');
+        // linkVoteByYes.addEventListener('click', function () {
+        //     window.location = "/vote.html";
+        // });
+
+        const anotherQuestion = document.getElementById('anotherQuestion');
+        anotherQuestion.addEventListener('click', function () {
+            window.location = "/answer";
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+h1, 
+.text_red {
+    color: red;
+}
+
+#top {
+    font-size: 100px;
+}
+
+[type] {
+    color: violet;
+}
+
+[type="text"] {
+    color: brown;
+}
+
+ul li {
+    color: blue;
+}
+
+ul>li {
+    color: yellow
+}
+
+p:hover {
+    background-color: rgb(87, 39, 5);
+}
+
+input:focus {
+    background-color: aqua;
+}

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</head>
+<a href="/ask">Hỏi nhanh</a>
+<a href="/answer">Đáp án</a>
+
+<h1 id='question'>question</h1>
+
+<div>
+    Tổng vote;
+    <span id='total'></span>
+</div>
+
+<div>
+    <span>Phần trăm vote Yes là:</span>
+    <span id='voteYes'></span>
+</div>
+
+<div>
+    <span>Phần trăm vote No là:</span>
+    <span id='voteNo'></span>
+</div>
+<button id='anotherQuestion'>Câu hỏi khác</button>
+
+<script>
+    // let question;
+    // let voteYes;
+    // let voteNo;
+    // let voteAll;
+    // let percentYes;
+    // let percentNo;
+
+    // $.ajax({
+    //     url: 'http://localhost:2002/randomquestion',
+    //     success: function (questionData) {
+    //         question = questionData;
+
+    //         voteYes = question.yes;
+    //         voteNo = question.no;
+    //         voteAll = Number(voteYes) + Number(voteNo);
+    //         percentYes = (voteYes / voteAll) * 100;
+    //         percentNo = (voteNo / voteAll) * 100;
+
+    //         document.getElementById('voteYes').innerText = percentYes.toFixed(2) + '%';
+    //         document.getElementById('voteNo').innerText = percentNo.toFixed(2) + '%';
+    //     }
+    // })
+
+    // const anotherQuestion = document.getElementById('anotherQuestion');
+    
+    const questionId = window.location.pathname.split('/')[2];
+
+    $.ajax({
+        type: 'GET',
+        url: `http://localhost:2002/detail/${questionId}`,
+        success: function(question) {
+            const total = Number(question.yes) + Number(question.no);
+            const voteYes = Number(question.yes)*100/total;
+            const voteNo = Number(question.no)*100/total;
+
+            $('#question').text(question.content);
+            $('#total').text(total);
+            $('#voteYes').text((total > 0) ? voteYes.toFixed(2) : 0);
+            $('#voteNo').text((total > 0) ? voteNo.toFixed(2) : 0);
+            console.log(question);
+        }
+    });
+
+    document.getElementById('anotherQuestion').addEventListener('click', function(){
+        window.location = '/answer'
+    })
+
+</script>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+.header {
+    background-color: #0000ff;
+    font-weight: bold;
+    text-align: center;
+    font-size: 12px;
+    line-height: 14px
+}
+
+.nav {
+    background-color: #800080;
+    text-align: center;
+    position: relative;
+    font-weight: bold;
+}
+
+.main {
+    background-color: #ffd700;
+    position: absolute;
+    top: 68px;
+    width: 1200px;
+    font-weight: bold;
+    text-align: center
+}
+
+.aside {
+    background-color: #808080;
+    position: absolute;
+    top: 68px;
+    right: 8px;
+    width: 384px;
+    height: 338px;    
+    font-weight: bold;
+    text-align: center
+}
+
+.footer {
+    background-color: #00ffff;
+    position: absolute;
+    top: 406px;
+    font-weight: bold;
+    text-align: center
+}
+
+
+

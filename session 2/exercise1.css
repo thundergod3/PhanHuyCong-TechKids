@@ -1,0 +1,33 @@
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+#container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D5B0AC;
+}
+
+.item {
+    background-color: #402E2A;
+    font-weight: bold;
+    width: 100px;
+    height: 30px;
+    padding: 7px 28px;
+    margin: 2px;
+}
+
+span:hover {
+    background-color: blue;
+    cursor: pointer;
+}

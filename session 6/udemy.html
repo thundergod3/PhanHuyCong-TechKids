@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="udemy.css"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div id='container'>
+        <img src="https://www.udemy.com/staticx/udemy/images/v6/logo-coral.svg" alt="">
+        <form action="" method="get" onsubmit="preventDefault(event)">
+            <input type="text" id='results' oninput="myFunction()">
+            <button>Tìm kiếm </button>
+        </form>
+
+        <div id='container_data'>
+
+        </div>
+
+
+    <script>
+        function preventDefault(event) {
+            event.preventDefault();
+        };
+
+        let nextUrl;
+        let valueInput;
+
+        function myFunction() {
+            let search = document.getElementById("results").value;
+            valueInput = search;
+            
+        };
+        console.log(valueInput);
+        
+
+        $.ajax({
+            type: "GET",
+
+            url: "https://api.techkids.vn/udemy/courses?page=1&page_size=12",
+            success: function (data) {
+                for (let i = 0; i < data.results.length; i++) {
+                    $("#container_data").append(`
+                        <div>
+                            <img src=${data.results[i].image_240x135}>   
+                            <h2>${data.results[i].title}</h2> 
+                        </div>
+                    `);
+                };
+
+                nextUrl = data.next;
+                console.log(nextUrl);
+                
+            }
+        });
+
+        if($(window).scrollTop() == $(document).height() - $(window).height()) {
+            $.ajax({
+                type: 'GET',
+
+                url : nextUrl,
+                success: function(data_next) {
+                    console.log("SUCCESS !!");
+
+                }
+            })
+        };
+
+        $('button').on('click', function () {
+            $('#container_data').html('');
+            $.ajax({
+                type: "GET",
+
+                url: `https://api.techkids.vn/udemy/courses?page=1&page_size=12&search=${valueInput}`,
+                success: function (data) {
+                    if(data.next != null) {
+                        console.log(data);
+                        
+                        for (let i = 0; i < data.results.length; i++) {
+                            $("#container_data").append(`
+                                <div>
+                                    <img src=${data.results[i].image_240x135}>   
+                                    <h2>${data.results[i].title}</h2> 
+                                </div>
+                            `);
+                        };
+                    }
+                    else {
+                        $('container_data').html('NOT FOUND')
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
