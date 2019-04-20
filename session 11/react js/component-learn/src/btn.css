@@ -1,0 +1,29 @@
+.btn-bg {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    width: 40px;
+    height: 40px;
+    margin-top: 10px;
+    margin-right: 22px;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+
+}
+
+.plus {
+    background-color: green;
+}
+
+.score {
+    width: 23px;
+    height: 24px
+}
+
+.minus {
+    background-color: red;
+    margin-left: 23px
+}
